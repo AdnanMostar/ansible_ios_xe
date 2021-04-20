@@ -1,0 +1,30 @@
+---
+- name: Check BGP policy,attributes,filters
+  hosts: ASR
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: show commands are running
+      ios_command:
+        commands:
+          - sh route-map
+          - sh ip prefix-list 
+          - sh ip as-path-access-list
+          - sh ip community-list
+          - sh ip protocols
+
+      register: print_output
+
+    -  debug: var=print_output.stdout_lines
+
+    - name: save output to a file
+      lineinfile:
+        create: yes
+        line: "{{item}}"
+        path: ./output/{{ inventory_hostname }}.txt
+      with_items: "{{ print_output.stdout }}"
+
+# Commands to run:
+#1) ansible-playbook ios-xe_sh_bgp_policy_filter_attributes.yaml -u akahric -k
+# !!Please change to your username and use your radius password when prompted

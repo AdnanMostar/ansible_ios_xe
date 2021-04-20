@@ -1,0 +1,35 @@
+---
+- name: Check BGP configuration and operation
+  hosts: ASR
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: show commands are running
+      ios_command:
+        commands:
+          - sh run | s router bgp 8469
+          - sh bgp ipv4 unic summ
+          - sh ip route bgp
+          - sh bgp ipv6 unic summ
+          - sh ipv6 route bgp
+          - sh bgp vpnv4 unicast all summ
+          - sh bgp vpnv4 unicast all
+          - sh bgp vpnv4 unicas all rib-failure
+          - sh ip bgp rib-failure
+          - sh bgp ipv6 unicast rib-failure
+
+      register: print_output
+
+    -  debug: var=print_output.stdout_lines
+
+    - name: save output to a file
+      lineinfile:
+        create: yes
+        line: "{{item}}"
+        path: ./output/{{ inventory_hostname }}.txt
+      with_items: "{{ print_output.stdout }}"
+
+# Commands to run:
+#1) ansible-playbook ios-xe_sh_bgp.yaml -u akahric -k
+# !!Please change to your username and use your radius password when prompted
