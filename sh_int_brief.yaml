@@ -9,8 +9,7 @@
       ios_command:
         commands:
           - sh ip int brief | i up
-       
-
+     
       register: print_output
 
     -  debug: var=print_output.stdout_lines
