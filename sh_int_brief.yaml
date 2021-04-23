@@ -1,0 +1,27 @@
+---
+- name: Check Interfaces on IOS-XE routers
+  hosts: ASR
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: show commands are running
+      ios_command:
+        commands:
+          - sh ip int brief | i up
+       
+
+      register: print_output
+
+    -  debug: var=print_output.stdout_lines
+
+    - name: save output to a file
+      lineinfile:
+        create: yes
+        line: "{{item}}"
+        path: ./output/{{ inventory_hostname }}.txt
+      with_items: "{{ print_output.stdout }}"
+
+# Commands to run:
+#1) ansible-playbook ios-xe_sh_int.yaml -u akahric -k
+# !!Please change to your username and use your radius password when prompted
