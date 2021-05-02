@@ -1,12 +1,12 @@
 ---
-- name: Manage GNS3 devices
-  hosts: gns3-ios
+- name: Manage CML devices
+  hosts: ios-all
   gather_facts: false
   connection: local
 
   vars:
     cli:
-      username: david
+      username: cisco
       password: cisco
 
   tasks:
@@ -22,26 +22,24 @@
 
     -  debug: var=print_output
 
-- name: Switch specific config
-  hosts: S1, S2
+- name: CE specific config
+  hosts: 192.168.255.127,192.168.255.162,192.168.255.128
   gather_facts: false
   connection: local
 
   vars:
     cli:
-      username: david
+      username: cisco
       password: cisco
 
   tasks:
-    - name: Create VLANs
+    - name: Create Username and Password
       ios_config:
         provider: "{{ cli }}"
         authorize: yes
         lines:
-          - vlan 2
-          - vlan 3
-          - vlan 4
-          - vlan 5
+          - username akahric privilege 15 secret cisco
+          - username hamdija privilege 15 secret cisco
 
       register: print_output
 
