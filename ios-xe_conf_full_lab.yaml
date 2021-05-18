@@ -1,0 +1,72 @@
+- name: Push configuration commands from file to CE1
+  hosts: 192.168.255.127
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/ce1
+  tags: ce1  
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/ce.j2
+
+- name: Push configuration commands from file to CE2
+  hosts: 192.168.255.162
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/ce2
+  tags: ce2
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/ce.j2
+
+- name: Push configuration commands from file to P1
+  hosts: p1
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/p1
+  tags: p1  
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/p.j2
+
+- name: Push configuration commands from file to P2
+  hosts: p2
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/p2
+  tags: p2  
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/p.j2
+
+- name: Push configuration commands from file to IOS
+  hosts: 192.168.255.250
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/pe2
+  tags: pe2  
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/pe.j2
+
+# Commands to run:
+#1) Please change variable in an appropriate *vars files to meet your needs
+#2) ansible-playbook ios-xe_conf_full_lab.yaml -u cisco -k
+#3)!!Please change to your username and use your radius password when prompted        
+
+
+
