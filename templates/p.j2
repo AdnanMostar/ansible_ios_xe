@@ -1,0 +1,33 @@
+hostname {{ hostname }}
+!
+ip cef
+!
+interface {{ int1_name_numb }}
+ ip address {{ int1_addr }}
+ no shut
+!
+interface {{ int2_name_numb }}
+ ip address {{ int2_addr }}
+ mpls ip
+ no shut 
+!
+interface {{ int3_name_numb }}
+ ip address {{ int3_addr }}
+ mpls ip
+ no shut
+!
+interface {{ int4_name_numb }}
+ ip address {{ int4_addr }}
+ mpls ip
+ no shut
+!
+router ospf {{ ospf_proc }}
+ network {{ ospf_network1 }} area 0
+ network {{ ospf_network2 }} area 0
+ network {{ ospf_network3 }} area 0
+ network {{ ospf_network4 }} area 0
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!

@@ -1,0 +1,30 @@
+hostname: P1
+int1_name_numb: Loopback0
+int1_addr: 3.3.3.3 255.255.255.255
+int2_name_numb: GigabitEthernet0/0
+int2_addr: 192.168.23.3 255.255.255.0
+int3_name_numb: GigabitEthernet0/1
+int3_addr: 192.168.34.3 255.255.255.0
+int4_name_numb: GigabitEthernet0/3
+int4_addr: 192.168.70.2 255.255.255.0
+int5_name_numb: 
+int5_addr: 
+ospf_proc: 1
+ospf_network1: 3.3.3.3 0.0.0.0
+ospf_network2: 192.168.23.0 0.0.0.255
+ospf_network3: 192.168.34.0 0.0.0.255
+ospf_network4: 192.168.70.0 0.0.0.255
+import_rt: 
+export_rt: 
+vrf_name: 
+bgp_proc: 1
+bgp_network1: 
+bgp_mask1: 
+bgp_network2: 
+bgp_mask2:
+bgp_neigh1: 
+remote_as1: 
+bgp_neigh2:
+bgp_neigh3:
+bgp_neigh4:
+bgp_neigh5:

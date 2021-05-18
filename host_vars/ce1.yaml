@@ -1,0 +1,25 @@
+hostname: ce1
+int1_name_numb: Loopback0
+int1_addr: 1.1.1.1 255.255.255.255
+int2_name_numb: GigabitEthernet2
+int2_addr: 192.168.12.1 255.255.255.0
+int3_name_numb:
+int3_addr:
+int4_name_numb:
+int4_addr:
+int5_name_numb: 
+int5_addr: 
+import_rt: 1:100
+export_rt: 1:100
+vrf_name: customer_100
+bgp_proc: 1
+bgp_network1: 1.1.1.1 
+bgp_mask1: 255.255.255.255
+bgp_network2: 
+bgp_mask2:
+bgp_neigh1: 192.168.255.250
+remote_as1: 234
+bgp_neigh2:
+bgp_neigh3:
+bgp_neigh4:
+bgp_neigh5:

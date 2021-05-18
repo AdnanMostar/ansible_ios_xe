@@ -1,0 +1,38 @@
+- name: Push configuration commands from file to IOS
+  hosts: p1
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/p1
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/p.j2
+
+      register: print_output
+
+    -  debug: var=print_output.stdout_lines
+
+- name: Push configuration commands from file to IOS
+  hosts: p2
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/p2
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/p.j2
+
+      register: print_output
+
+    -  debug: var=print_output.stdout_lines
+
+# Commands to run:
+#1) Please change variable in an appropriate host_vars file to meet your needs
+#2) ansible-playbook ios-xe_conf_p_from_j2.yaml -u cisco -k
+#3)!!Please change to your username and use your radius password when prompted
+#4.)!!!!!!!! Password has to be used if is not defined in variable!!!!!!
+

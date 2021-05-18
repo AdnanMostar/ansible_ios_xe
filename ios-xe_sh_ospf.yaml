@@ -1,6 +1,6 @@
 ---
 - name: Check OSPF configuration and operation
-  hosts: ASR
+  hosts:ce-all
   gather_facts: false
   connection: local
 
@@ -8,7 +8,7 @@
     - name: show commands are running
       ios_command:
         commands:
-          - sh run | s router ospf 100
+          - sh run | s router ospf 1
           - sh ip ospf int bri
           - sh ip ospf int
           - sh ip ospf neighb

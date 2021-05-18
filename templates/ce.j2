@@ -1,0 +1,16 @@
+hostname {{hostname}}
+!
+interface {{ int1_name_numb }}
+ ip address {{ int1_addr }}
+ no shut
+!
+interface {{ int2_name_numb }}
+ ip address {{ int2_addr }}
+ no shut
+!
+router bgp {{ bgp_proc }}
+ bgp log-neighbor-changes
+ network {{ bgp_network1 }} mask {{ bgp_mask1 }}
+ neighbor {{ bgp_neigh1 }} remote-as {{ remote_as1 }}
+!
+

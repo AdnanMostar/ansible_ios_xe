@@ -1,0 +1,35 @@
+hostname: PE2
+int1_name_numb: Loopback0
+int1_addr: 4.4.4.4 255.255.255.255
+int2_name_numb: GigabitEthernet0/0
+int2_addr: 192.168.34.4 255.255.255.0 
+int3_name_numb: GigabitEthernet0/1
+int3_addr: 192.168.45.4 255.255.255.0
+int4_name_numb: GigabitEthernet0/4
+int4_addr: 192.168.71.2 255.255.255.0
+int5_name_numb:
+int5_addr:
+ospf_proc: 1
+ospf_area: 0
+ospf_network1: 4.4.4.4 0.0.0.0
+ospf_network2: 192.168.34.0 0.0.0.255
+ospf_network3: 
+ospf_network4: 
+rd: 1:1
+rt_exp: 1:1
+rt_imp: 1:1
+vrf_name: CUSTOMER
+bgp_proc: 234
+bgp_src_int: Loopback0
+bgp_network1:
+bgp_mask1:
+bgp_network2:
+bgp_mask2:
+bgp_neigh1: 2.2.2.2
+rm_as1: 234
+bgp_neigh2: 192.168.45.5
+rm_as2: 5
+bgp_neigh3:
+bgp_neigh4:
+bgp_neigh5:
+

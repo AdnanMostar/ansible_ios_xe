@@ -1,6 +1,6 @@
 ---
 - name: Check Interfaces on IOS-XE routers
-  hosts: ASR
+  hosts: ios-all
   gather_facts: false
   connection: local
 

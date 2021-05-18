@@ -1,0 +1,55 @@
+hostname {{ hostname }}
+!
+ip vrf {{ vrf_name }}
+ rd 1:1
+ route-target export 1:1
+ route-target import 1:1
+!
+ip cef
+!
+interface {{ int1_name_numb }}
+ ip address {{ int1_addr }}
+ no shut
+!
+interface {{int2_name_numb}}
+ ip address {{int2_addr}}
+ no shut
+ speed auto
+ mpls ip
+!
+interface {{ int3_name_numb }}
+ ip vrf forwarding {{ vrf_name }}
+ ip address {{int3_addr}}
+ no shut
+ duplex auto
+ speed auto
+!
+interface {{ int4_name_numb }}
+ ip address {{int4_addr}}
+ no shut
+ duplex auto
+ speed auto
+!
+router ospf {{ospf_proc}}
+ network {{ospf_network1}} area {{ospf_area}}
+ network {{ospf_network2}} area {{ospf_area}}
+!
+router bgp {{bgp_proc}}
+ bgp log-neighbor-changes
+ neighbor {{bgp_neigh1}} remote-as {{rm_as1}}
+ neighbor {{bgp_neigh1}} update-source {{bgp_src_int}}
+ !
+ address-family ipv4
+  no neighbor {{bgp_neigh1}} activate
+ exit-address-family
+ !
+ address-family vpnv4
+  neighbor {{bgp_neigh1}} activate
+  neighbor {{bgp_neigh1}} send-community extended
+ exit-address-family
+ ! 
+ address-family ipv4 vrf {{ vrf_name }}
+  neighbor {{bgp_neigh2}} remote-as {{ rm_as2 }}
+  neighbor {{bgp_neigh2}} activate
+ exit-address-family
+!

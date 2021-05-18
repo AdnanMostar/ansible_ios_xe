@@ -1,0 +1,22 @@
+- name: Push configuration commands from file to IOS
+  hosts: 192.168.255.250
+  gather_facts: false
+  connection: local
+  vars_files:
+    - ./host_vars/pe2
+
+  tasks:
+    - name: configuration commands are running
+      ios_config:
+        src: ./templates/pe.j2
+
+      register: print_output
+
+    -  debug: var=print_output.stdout_lines
+
+
+# Commands to run:
+#1) Please change variable in an appropriate *vars files to meet your needs
+#2) ansible-playbook ios-xe_conf_pe_from_j2.yaml -u cisco -k
+#3)!!Please change to your username and use your radius password when prompted
+
