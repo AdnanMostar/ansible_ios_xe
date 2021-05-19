@@ -1,13 +1,23 @@
-[iosxe:vars]
-ansible_user=developer
-ansible_password=C1sco12345
+[ce1:vars]
+ansible_user=cisco
+ansible_password=cisco
 ansible_become=yes
 ansible_become_method=enable
-ansible_network_os=iosxe
+ansible_network_os=ios
 ansible_connection=network_cli
 ansible_port=22
 netconf_port=830
-inventory_hostname=sandbox-iosxe-latest-1.cisco.com
+inventory_hostname=ce1
+
+[ce-all:vars]
+ansible_user=cisco
+ansible_password=cisco
+ansible_become=yes
+ansible_become_method=enable
+ansible_network_os=ios
+ansible_connection=network_cli
+ansible_port=22
+netconf_port=830
 
 [ios:vars]
 ansible_user=cisco
@@ -23,13 +33,16 @@ ansible_become_method=enable
 ansible_network_os=ios
 ansible_connection=network_cli
 
-[ce-all:vars]
-ansible_user=cisco
+[iosxe-sandbox:vars]
+ansible_user=developer
+ansible_password=C1sco12345
 ansible_become=yes
 ansible_become_method=enable
 ansible_network_os=ios
 ansible_connection=network_cli
-
+ansible_port=22
+netconf_port=830
+inventory_hostname=sandbox-iosxe-latest-1.cisco.com
 
 [p:vars]
 ansible_user=cisco
@@ -38,11 +51,12 @@ ansible_become_method=enable
 ansible_network_os=ios
 ansible_connection=network_cli
 
-[ios-xr:vars]
+[xr-all:vars]
 ansible_user=admin
 ansible_password=C1sco12345
 ansible_network_os=iosxr
 ansible_port=22
+netconf_port=10000
 
 [xr-sandbox:vars]
 ansible_user=admin
@@ -54,12 +68,15 @@ ansible_port=8181
 192.168.255.127
 [ce2]
 192.168.255.162
+[ce-all]
+192.168.255.127
+192.168.255.162
 [p1]
 192.168.255.69
 [p2]
 192.168.255.146
 [pe2]
-192.168.255.250
+A192.168.255.250
 [ios-xr]
 192.168.255.78
 [xr-all]
@@ -72,12 +89,9 @@ ansible_port=8181
 192.168.255.82
 192.168.255.69
 192.168.255.250
-[ce-all]
-ce1 ansible_host=192.168.255.127
-ce2 ansible_host=192.168.255.162
 [nxos-sandbox]
 sbx-nxos-mgmt.cisco.com ansible_port=8181
 [iosxe-sandbox]
 sandbox-iosxe-latest-1.cisco.com
-[xr-sandbox]
+
 

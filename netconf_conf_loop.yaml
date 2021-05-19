@@ -1,6 +1,6 @@
 ---
 - name: Add interface to IOSXE
-  hosts: iosxe-sandbox
+  hosts: ce-all
   connection: local
   gather_facts: False
 
@@ -10,7 +10,6 @@
 
     - name: Create a loopback Loopback100 with NETCONF
       netconf_config:
-        host: "{{inventory_hostname}}"
         port: "{{netconf_port}}"
         username: "{{ansible_user}}"
         password: "{{ansible_password}}"

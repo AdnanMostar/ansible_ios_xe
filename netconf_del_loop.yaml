@@ -1,0 +1,25 @@
+---
+- name: Add interface to IOSXE
+  hosts: ce-all
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - set_fact:
+        ansible_connection: local
+
+    - name: Create a loopback Loopback100 with NETCONF
+      netconf_config:
+        port: "{{netconf_port}}"
+        username: "{{ansible_user}}"
+        password: "{{ansible_password}}"
+        hostkey_verify: False
+        content: |
+            <config>                 
+              <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+                      <interface operation="delete">
+                              <name>Loopback1001</name>
+                      </interface>
+              </interfaces>
+            </config>  
+
